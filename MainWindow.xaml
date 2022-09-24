@@ -1,0 +1,33 @@
+﻿<Window x:Class="BeeHive.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BeeHive"
+        mc:Ignorable="d"
+        Title="System zarządzania rojem" Height="325" Width="625">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="jobFunctionsLabel" Content="Przydzielane funkcje:" Margin="10,5,10,5" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <Label x:Name="reportLabel" Grid.Column="1" Content="Raport dla królowej" Margin="5,5,5,0" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <StackPanel Grid.Row="1" Margin="5,5,5,5" UseLayoutRounding="False" ScrollViewer.VerticalScrollBarVisibility="Auto">
+            <ComboBox x:Name="jobsComboBox" Margin="5,5,5,5" Height="30">
+                <ListBoxItem Content="Zbieraczka nektaru" />
+                <ListBoxItem Content="Producentka miodu" />
+                <ListBoxItem Content="Opiekunka jaj" />
+            </ComboBox>
+            <Button x:Name="assignJobButton" Content="Przydziel funkcję pszczole" Margin="5,0,5,0" Height="30" Click="AssignJobButton_Click"/>
+        </StackPanel>
+        <Button x:Name="workShiftButton" Content="Następna zmiana" Margin="10,20,10,20" Grid.Row="2" Click="WorkShiftButton_Click"/>
+        <TextBox x:Name="statusReportTextBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Raport" IsReadOnly="True" Grid.RowSpan="2" Margin="5,10,5,20"/>
+
+    </Grid>
+</Window>
