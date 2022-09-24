@@ -14,11 +14,11 @@ namespace BeeHive
         {
             get
             {
-                string s = $"Miód: {Honey}";
+                string s = $"Miód: {Honey:0.00}";
                 if (Honey < LOW_LEVEL_WARNING)
                     s += "\nMAŁO MIODU - DODAJ PRODUCENTÓW MIODU!!";
 
-                s += $"\nNektar: {Nectar}";
+                s += $"\nNektar: {Nectar:0.00}";
                 if (Nectar < LOW_LEVEL_WARNING)
                     s += "\nMAŁO NEKTARU - DODAJ PRODUCENTÓW NEKTARU!!";
 

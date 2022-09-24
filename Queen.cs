@@ -32,13 +32,13 @@ namespace BeeHive
         private float eggs;
 
 
-        private Bee[] workers;
+        private IWorker[] workers;
         private float unassignedWorkers=3;
 
         public Queen() : base("Królowa")
         {
             StatusReport = "";
-            workers = Array.Empty<Bee>();
+            workers = Array.Empty<IWorker>();
             AssighBee("Opiekunka jaj");
             AssighBee("Zbieraczka nektaru");
             AssighBee("Producentka miodu");
@@ -62,13 +62,13 @@ namespace BeeHive
             UpdateStatusReport();
         }
 
-        void AddWorker(Bee bee)
+        void AddWorker(IWorker worker)
         {
             if (unassignedWorkers >= 1)
             {
                 unassignedWorkers--;
                 Array.Resize(ref workers, workers.Length + 1);
-                workers[workers.Length - 1] = bee;
+                workers[workers.Length - 1] = worker;
             }
         }
 
@@ -83,9 +83,9 @@ namespace BeeHive
         protected override void DoJob()
         {
             Eggs += EGGS_PER_SHIFT;
-            foreach (Bee bee in workers)
+            foreach (IWorker worker in workers)
             {
-                bee.WorkNextShift();
+                worker.WorkNextShift();
             }
             HoneyVault.ConsumeHoney(unassignedWorkers * HONEY_PER_UNASSIGNED_WORKER);
             UpdateStatusReport();
@@ -96,7 +96,7 @@ namespace BeeHive
         {
             string report = HoneyVault.StatusReport;
 
-            report += $"\n\nLiczba jaj: {Eggs}\nNieprzydzielone robotnice: {unassignedWorkers}";
+            report += $"\n\nLiczba jaj: {Eggs:0.00}\nNieprzydzielone robotnice: {unassignedWorkers:0.00}";
             report += WorkerStatus("Opiekunka jaj");
             report += WorkerStatus("Zbieraczka nektaru");
             report += WorkerStatus("Producentka miodu");
@@ -106,17 +106,17 @@ namespace BeeHive
 
         private string WorkerStatus(string job)
         {
-            int numberOfBees = 0;
-            foreach (Bee bee in workers)
+            int numberOfWorkers = 0;
+            foreach (IWorker worker in workers)
             {
-                if (bee.Job == job)
+                if (worker.Job == job)
                 {
-                    numberOfBees++;
+                    numberOfWorkers++;
                 }
             }
 
 
-            return $"\n{job}: {numberOfBees}";
+            return $"\n{job}: {numberOfWorkers}";
         }
 
        
