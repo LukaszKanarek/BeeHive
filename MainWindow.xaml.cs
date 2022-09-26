@@ -20,24 +20,24 @@ namespace BeeHive
     /// </summary>
     public partial class MainWindow : Window
     {
-        private Queen queen;
+        private readonly Queen queen;
         public MainWindow()
         {
             InitializeComponent();
-            queen = new Queen();
-            statusReportTextBox.Text = queen.StatusReport;
+            queen = Resources["queen"] as Queen;
+           // statusReportTextBox.Text = queen.StatusReport;
         }
 
         private void WorkShiftButton_Click(object sender, RoutedEventArgs e)
         {
             queen.WorkNextShift();
-            statusReportTextBox.Text = queen.StatusReport;
+           // statusReportTextBox.Text = queen.StatusReport;
         }
 
         private void AssignJobButton_Click(object sender, RoutedEventArgs e)
         {
             queen.AssighBee(jobsComboBox.Text);
-            statusReportTextBox.Text = queen.StatusReport;
+           // statusReportTextBox.Text = queen.StatusReport;
         }
 
 

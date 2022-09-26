@@ -6,7 +6,10 @@
         xmlns:local="clr-namespace:BeeHive"
         mc:Ignorable="d"
         Title="System zarządzania rojem" Height="325" Width="625">
-    <Grid>
+    <Window.Resources>
+        <local:Queen x:Key="queen"/>
+    </Window.Resources>
+    <Grid DataContext="{StaticResource queen}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
@@ -27,7 +30,7 @@
             <Button x:Name="assignJobButton" Content="Przydziel funkcję pszczole" Margin="5,0,5,0" Height="30" Click="AssignJobButton_Click"/>
         </StackPanel>
         <Button x:Name="workShiftButton" Content="Następna zmiana" Margin="10,20,10,20" Grid.Row="2" Click="WorkShiftButton_Click"/>
-        <TextBox x:Name="statusReportTextBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="Raport" IsReadOnly="True" Grid.RowSpan="2" Margin="5,10,5,20"/>
+        <TextBox x:Name="statusReportTextBox" Grid.Column="1" Grid.Row="1" TextWrapping="Wrap" Text="{Binding StatusReport, Mode=OneWay}" IsReadOnly="True" Grid.RowSpan="2" Margin="5,10,5,20"/>
 
     </Grid>
 </Window>
